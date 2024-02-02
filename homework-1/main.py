@@ -17,7 +17,7 @@ def load_db(index: int, DATA: tuple, NAME_DB: tuple) -> None:
 
     with open(DATA[index], 'r') as f:
         next(f)
-        cur.copy_from(f, NAME_DB[index], sep=",")
+        cur.copy_from(f, NAME_DB[index], columns=())
         conn.commit()
 
     conn.close()
@@ -33,5 +33,6 @@ if __name__ == '__main__':
     df1.to_sql('employees_data', engine)
     df2.to_sql('orders_data', engine)
     df3.to_sql('customers_data', engine)
+
 
 
