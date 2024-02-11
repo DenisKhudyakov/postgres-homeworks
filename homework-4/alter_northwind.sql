@@ -14,3 +14,4 @@ SELECT * FROM prod_discount
 --чтобы связь с таблицей order_details все же осталась.
 ALTER TABLE order_details DROP CONSTRAINT fk_order_details_products;
 DELETE FROM products WHERE discontinued = 1
+DELETE FROM order_details WHERE product_id NOT IN (SELECT DISTINCT product_id FROM products);
